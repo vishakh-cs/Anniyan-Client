@@ -4,6 +4,9 @@ import socketIOClient from "socket.io-client";
 import ChatList from './ChatList';
 import UserLogin from '../UserLogin';
 
+
+const ServerURL = import.meta.env.VITE_SERVER_URL;
+
 function Navbar() {
   return (
     <div className="bg-gray-800 text-white py-4 px-6">
@@ -15,7 +18,7 @@ function Navbar() {
 function ChatContainer() {
   const [user, setUser] = useState(localStorage.getItem('Anniyan-username'));
   const [chats, setChats] = useState([]);
-  const socketio = socketIOClient("http://localhost:3000");
+  const socketio = socketIOClient(ServerURL);
 
   useEffect(() => {
     socketio.on("chat", (message) => {
